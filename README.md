@@ -1,6 +1,6 @@
 # Sidekiq Cloud Native Buildpack
 
-## `gcr.io/paketo-buildpacks/puma`
+## `ghcr.io/h2ik/buildpack-sidekiq`
 
 The Sidekiq CNB sets the start command for a given ruby application that runs on a [sidekiq server](https://sidekiq.org/).
 
