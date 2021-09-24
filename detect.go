@@ -9,7 +9,7 @@ import (
 
 //go:generate faux --interface Parser --output fakes/parser.go
 type Parser interface {
-	Parse(path string) (hasSidekiq bool, err error)
+	Parse(path string, gemName string) (hasSidekiq bool, err error)
 }
 
 type BuildPlanMetadata struct {
@@ -18,7 +18,7 @@ type BuildPlanMetadata struct {
 
 func Detect(gemfileParser Parser) packit.DetectFunc {
 	return func(context packit.DetectContext) (packit.DetectResult, error) {
-		hasSidekiq, err := gemfileParser.Parse(filepath.Join(context.WorkingDir, "Gemfile"))
+		hasSidekiq, err := gemfileParser.Parse(filepath.Join(context.WorkingDir, "Gemfile"), "sidekiq")
 		if err != nil {
 			return packit.DetectResult{}, fmt.Errorf("failed to parse Gemfile: %w", err)
 		}

@@ -1,9 +1,9 @@
-api = "0.2"
+api = "0.5"
 
 [buildpack]
-  homepage = "https://github.com/paketo-buildpacks/sidekiq"
-  id = "paketo-buildpacks/sidekiq"
-  name = "Paketo Sidekiq Buildpack"
+  homepage = "https://github.com/h2ik/buildpack-sidekiq"
+  id = "h2ik/buildpack-sidekiq"
+  name = "h2ik Sidekiq Buildpack"
 
 [metadata]
   include-files = ["bin/build", "bin/detect", "bin/run", "buildpack.toml"]

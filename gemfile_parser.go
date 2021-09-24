@@ -13,7 +13,7 @@ func NewGemfileParser() GemfileParser {
 	return GemfileParser{}
 }
 
-func (p GemfileParser) Parse(path string) (bool, error) {
+func (p GemfileParser) Parse(path string, gemName string) (bool, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -25,7 +25,7 @@ func (p GemfileParser) Parse(path string) (bool, error) {
 	defer file.Close()
 
 	quotes := `["']`
-	sidekiqRe := regexp.MustCompile(fmt.Sprintf(`^\s*gem %ssidekiq%s`, quotes, quotes))
+	sidekiqRe := regexp.MustCompile(fmt.Sprintf(`^\s*gem %s%s%s`, quotes, gemName, quotes))
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {

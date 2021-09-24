@@ -44,7 +44,7 @@ gem 'sidekiq'
 
 				Expect(ioutil.WriteFile(path, []byte(GEMFILE_CONTENTS), 0644)).To(Succeed())
 
-				hasSidekiq, err := parser.Parse(path)
+				hasSidekiq, err := parser.Parse(path, "sidekiq")
 				Expect(err).NotTo(HaveOccurred())
 				Expect(hasSidekiq).To(Equal(true))
 			})
@@ -58,7 +58,7 @@ end
 
 				Expect(ioutil.WriteFile(path, []byte(GEMFILE_CONTENTS), 0644)).To(Succeed())
 
-				hasSidekiq, err := parser.Parse(path)
+				hasSidekiq, err := parser.Parse(path, "sidekiq")
 				Expect(err).NotTo(HaveOccurred())
 				Expect(hasSidekiq).To(Equal(true))
 			})
@@ -72,7 +72,7 @@ end
 
 				Expect(ioutil.WriteFile(path, []byte(GEMFILE_CONTENTS), 0644)).To(Succeed())
 
-				hasSidekiq, err := parser.Parse(path)
+				hasSidekiq, err := parser.Parse(path, "sidekiq")
 				Expect(err).NotTo(HaveOccurred())
 				Expect(hasSidekiq).To(Equal(false))
 			})
@@ -84,7 +84,7 @@ end
 
 				Expect(ioutil.WriteFile(path, []byte(GEMFILE_CONTENTS), 0644)).To(Succeed())
 
-				hasSidekiq, err := parser.Parse(path)
+				hasSidekiq, err := parser.Parse(path, "sidekiq")
 				Expect(err).NotTo(HaveOccurred())
 				Expect(hasSidekiq).To(Equal(false))
 			})
@@ -96,7 +96,7 @@ end
 			})
 
 			it("returns all false", func() {
-				hasSidekiq, err := parser.Parse(path)
+				hasSidekiq, err := parser.Parse(path, "sidekiq")
 				Expect(err).NotTo(HaveOccurred())
 				Expect(hasSidekiq).To(Equal(false))
 			})
@@ -109,7 +109,7 @@ end
 				})
 
 				it("returns an error", func() {
-					_, err := parser.Parse(path)
+					_, err := parser.Parse(path, "sidekiq")
 					Expect(err).To(HaveOccurred())
 					Expect(err).To(MatchError(ContainSubstring("failed to parse Gemfile:")))
 					Expect(err).To(MatchError(ContainSubstring("permission denied")))
